@@ -41,15 +41,15 @@ export function Player() {
 
     const episode = episodeList[playOrder.current[currentEpisodeIndex]]
 
-    useEffect(()=>{
-        console.log(playOrder.current)
-    }, [playOrder.current])
-
     function setUpProgressListener() {
         audioRef.current.currentTime = 0
 
         audioRef.current.addEventListener('timeupdate', () => {
             setProgress(Math.floor(audioRef.current.currentTime))
+        })
+
+        document.addEventListener('keypress', ({ key }) => {
+            if(key === ' ') togglePlay()
         })
     }
 

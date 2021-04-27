@@ -60,7 +60,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                 </Details>
                 <Buttons>
                   <button onClick={() => play(episode)}>
-                    <img src="/play-green.svg" alt="Play episode" style={{width: '1.5rem'}}/>
+                    <img src="/play-green.svg" alt="Play episode" style={{width: '1.5rem'}}  />
                   </button>
                   <button onClick={() => addToList(episode)}>
                     <MdPlaylistAdd />
@@ -130,7 +130,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await api.get('/episodes', {
+  const { data } = await api.get('/api/getEpisodes', {
     params: {
       _limit: 12,
       _sort: 'published_at',

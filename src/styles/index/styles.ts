@@ -62,12 +62,25 @@ export const Buttons = styled.div`
         display: grid;
         place-content: center; 
         transition: filter 0.3s;
+        position: relative;
         & img{
             width: 1.5rem;
             height: 1.5rem;
         }
         & :hover{
             filter: brightness(0.95);
+            & ::after{
+                    content: "Play";
+                    background: #fff;
+                    position: absolute;
+                    top: -1.5rem;
+                    left: 0;
+                    border: 0.8px solid ${(props: PropsTheme) => props.theme.colors.gray_500};
+                    font-size: 0.7rem;
+                    padding: 0 0.5rem;
+                    z-index: 10;
+                    filter: none;
+                }
               }
 
         & :last-child{
@@ -78,6 +91,23 @@ export const Buttons = styled.div`
             border-radius: 0.675rem;
             font-size: 1.5rem;
             transition: filter 0.3s;
+            & :hover {
+                & ::after{
+                        content: "Add to playlist";
+                        background: #fff;
+                        position: absolute;
+                        white-space: nowrap;
+                        top: -1.5rem;
+                        left: 0;
+                        /* transform: translateX(-50%); */
+                        border: 0.8px solid ${(props: PropsTheme) => props.theme.colors.gray_500};
+                        font-size: 0.7rem;
+                        padding: 0 0.5rem;
+                        z-index: 10;
+                        filter: none;
+                    }
+
+            }
         }
     }
 

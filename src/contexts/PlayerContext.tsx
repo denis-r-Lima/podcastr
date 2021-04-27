@@ -51,6 +51,7 @@ export const PlayerContextProvider: React.FC<PlayerContextProviderProps> = ({ ch
   }
 
   function addToList(episode: Episode){
+    if(episodeList.some(e => e.id === episode.id)) return
     playOrder.current = [...playOrder.current, playOrder.current.length]
     setEpisodeList(current =>[...current, episode])
   }
@@ -93,11 +94,6 @@ export const PlayerContextProvider: React.FC<PlayerContextProviderProps> = ({ ch
   }
 
   function nextEpisode(){
-    // if(isShuffling){
-    //   const nextRandomEpisodeIndex = Math.floor(Math.random() * episodeList.length)
-    //   setCurrentEpisodeIndex(nextRandomEpisodeIndex)
-    //   return
-    // }
     if(( currentEpisodeIndex + 1 ) <  episodeList.length ){
       setCurrentEpisodeIndex( current => current + 1)
     }
