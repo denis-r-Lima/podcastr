@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PropsTheme } from '../../pages/_app';
+import { PropsTheme } from '../../Themes';
 
 export const Container = styled.header`
     background-color: ${(props: PropsTheme) => props.theme.colors.white};

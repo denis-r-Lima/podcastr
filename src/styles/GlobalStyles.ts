@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-import { PropsTheme } from '../pages/_app'
+import { PropsTheme } from '../Themes'
 
 
 export default createGlobalStyle `

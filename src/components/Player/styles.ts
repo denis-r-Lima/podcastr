@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PropsTheme } from '../../pages/_app';
+import { PropsTheme } from '../../Themes';
 
 export const Container = styled.div`
   width: 25.6rem;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PropsTheme } from '../_app';
+import { PropsTheme } from '../../Themes';
 
 export const OuterContainer = styled.div`
     height: calc(100vh - 6.5rem);
