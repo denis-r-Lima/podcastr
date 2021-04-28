@@ -1,6 +1,5 @@
 import { format, parseISO } from 'date-fns'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -12,6 +11,7 @@ import { usePlayerContext } from '../../contexts/PlayerContext'
 
 type Episode = {
   id: string,
+  slug: string,
   title: string,
   members: string,
   publishedAt: string,
@@ -28,7 +28,6 @@ type EpisodeProps = {
 
 export default function Episode({ episode }: EpisodeProps) {
 
-    const router = useRouter()
 
   const { play } = usePlayerContext()
 
@@ -70,10 +69,15 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
     const { slug } = ctx.params
 
-    const { data } = await api.get(`/episodes/${slug}`)
+    const { data } = await api.get(`/getEpisodeById`, {
+        params: {
+           slug: slug
+        }
+    })
 
-    const episode = {
-        id: data.id,
+    const episode: Episode = {
+        id: data['_id'],
+        slug: data.slug,
         title: data.title,
         members: data.members,
         publishedAt: format(parseISO(data.published_at), 'MMM do yy'),
@@ -88,7 +92,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
         props:{
             episode
         },
-        revalidate: 60*60*48 //revalidate every 24h
+        revalidate: 60*60*48 //revalidate every 48h
     }
 }
 

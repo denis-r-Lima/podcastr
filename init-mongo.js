@@ -1,7 +1,8 @@
 db = db.getSiblingDB('podcastr');
+
 db.createUser(
   {
-    user: 'admin',
+    user: 'DevUser',
     pwd: '123456',
     roles: [{ role: 'readWrite', db: 'podcastr' }],
   },
@@ -11,7 +12,7 @@ db.createCollection('episodes');
 
 db.episodes.insertMany([
   {
-    "id": "a-importancia-da-contribuicao-em-open-source",      
+    "slug": "a-importancia-da-contribuicao-em-open-source",      
     "title": "Faladev #30 | A importância da contribuição em Open Source",
     "members": "Diego Fernandes, João Pedro, Diego Haz e Bruno Lemos",
     "published_at": "2021-01-22 16:35:40",
@@ -24,7 +25,7 @@ db.episodes.insertMany([
     }
   },
   {
-    "id": "uma-conversa-sobre-programacao-funcional-e-orientacao-a-objetos",      
+    "slug": "uma-conversa-sobre-programacao-funcional-e-orientacao-a-objetos",      
     "title": "Faladev #29 | Duas perspectivas diferentes na mesa: uma conversa sobre PF e OOP",
     "members": "Diego Fernandes, Dani Leão, Laura Beatris e Rafael Camarda",
     "published_at": "2021-01-15 13:00:00",
@@ -37,7 +38,7 @@ db.episodes.insertMany([
     }
   },
   {
-    "id": "barreiras-e-solucoes-propostas-por-micro-servicos",      
+    "slug": "barreiras-e-solucoes-propostas-por-micro-servicos",      
     "title": "Faladev #28 | Por trás de barreiras e soluções propostas por micro-serviços",
     "members": "Diego Fernandes, Dani Leão, Wesley Williams e Lucas Santos",
     "published_at": "2021-01-08 13:00:00",
@@ -50,7 +51,7 @@ db.episodes.insertMany([
     }
   },
   {
-    "id": "aplicacao-de-arquiteturas-mvc-e-clean-architecture-na-pratica",      
+    "slug": "aplicacao-de-arquiteturas-mvc-e-clean-architecture-na-pratica",      
     "title": "Faladev #27 | Aplicação de arquiteturas MVC e CA na prática",
     "members": "Diego Fernandes, Dani Leão, Otávio Lemos e Rodrigo Branas",
     "published_at": "2020-12-18 14:00:00",
@@ -63,7 +64,7 @@ db.episodes.insertMany([
     }
   },
   {
-    "id": "entrevista-jose-valim-criador-do-elixir",      
+    "slug": "entrevista-jose-valim-criador-do-elixir",      
     "title": "Faladev #26 | Especial: entrevista exclusiva com José Valim, criador da linguagem Elixir",
     "members": "Diego Fernandes e José Valim",
     "published_at": "2020-12-04 15:00:00",
@@ -76,7 +77,7 @@ db.episodes.insertMany([
     }
   },
   {
-    "id": "o-que-e-ui-ux",      
+    "slug": "o-que-e-ui-ux",      
     "title": "Faladev #25 | O que é UX/UI?",
     "members": "Diego Fernandes, Tiago Luchtenberg e Thainan Librelon",
     "published_at": "2020-10-30 14:00:00",
@@ -89,7 +90,7 @@ db.episodes.insertMany([
     }
   },
   {
-    "id": "como-virar-lider-desenvolvimento",      
+    "slug": "como-virar-lider-desenvolvimento",      
     "title": "Faladev #24 | Como virar líder de desenvolvimento?",
     "members": "Diego Fernandes, João Paulo e Cleiton Souza",
     "published_at": "2020-10-23 14:00:00",
@@ -102,7 +103,7 @@ db.episodes.insertMany([
     }
   },
   {
-    "id": "comunidades-e-tecnologia",      
+    "slug": "comunidades-e-tecnologia",      
     "title": "FalaDev #23 | O que comunidades têm a ver com tecnologia?",
     "members": "Diego Fernandes, Isabela Castilho e João Inácio",
     "published_at": "2020-10-16 13:00:00",
@@ -115,7 +116,7 @@ db.episodes.insertMany([
     }
   },
   {
-    "id": "typescript-vale-a-pena",      
+    "slug": "typescript-vale-a-pena",      
     "title": "FalaDev #22 - TypeScript vale a pena? JavaScript perde sentido?",
     "members": "Diego Fernandes, Mayk Brito e João Pedro",
     "published_at": "2020-05-04 14:49:35",
@@ -128,7 +129,7 @@ db.episodes.insertMany([
     }
   },
   {
-    "id": "estrategias-de-autenticacao-jwt-oauth",      
+    "slug": "estrategias-de-autenticacao-jwt-oauth",      
     "title": "FalaDev #21 - Estratégias de autenticação, JWT, OAuth, qual usar?",
     "members": "Diego Fernandes, Higo Ribeiro e Guilherme Pellizzetti",
     "published_at": "2020-04-09 20:00:00",

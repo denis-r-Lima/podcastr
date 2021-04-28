@@ -41,6 +41,13 @@ const episodeSchema = new mongoose.Schema({
     }
 })
 
-const Episodes = mongoose.model('Episodes', episodeSchema, 'episodes')
+let Episodes: mongoose.Model<mongoose.Document<any, {}>, {}>
+
+try{
+    Episodes = mongoose.model('Episodes')
+}catch{
+    Episodes = mongoose.model('Episodes', episodeSchema, 'episodes')
+}
+
 
 export default Episodes

@@ -1,11 +1,12 @@
 import mongoose from 'mongoose'
 
-mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@localhost:27017`, {
+mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true,
-  dbName: 'podcastr'
+  user:process.env.DB_USER,
+  pass:process.env.DB_PASSWORD,
 })
 
 

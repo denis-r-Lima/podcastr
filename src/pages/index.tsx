@@ -13,6 +13,7 @@ import { usePlayerContext } from "../contexts/PlayerContext"
 
 type Episode = {
   id: string,
+  slug: string,
   title: string,
   members: string,
   publishedAt: string,
@@ -51,7 +52,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                 objectFit="cover"
                  />
                 <Details>
-                  <Link href={`/episode/${episode.id}`}>
+                  <Link href={`/episode/${episode.slug}`}>
                     <a>{episode.title}</a>
                   </Link>
                   <p>{episode.members}</p>
@@ -99,7 +100,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                       />
                     </td>
                     <td>
-                      <Link href={`/episode/${episode.id}`}>
+                      <Link href={`/episode/${episode.slug}`}>
                         <a>{episode.title}</a>
                       </Link>
                     </td>
@@ -130,17 +131,12 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await api.get('/api/getEpisodes', {
-    params: {
-      _limit: 12,
-      _sort: 'published_at',
-      _order: 'desc'
-    }
-  })
+  const { data } = await api.get('/getEpisodes')
 
   const episodes: Episode[] = data.map((d) => {
     return {
-      id: d.id,
+      id: d['_id'],
+      slug: d.slug,
       title: d.title,
       members: d.members,
       publishedAt: format(parseISO(d.published_at), 'MMM do yy'),
