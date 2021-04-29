@@ -122,7 +122,7 @@ export const Details = styled.div`
               content: "";
               width: 4px;
               height: 4px;
-              border-radius: 50%50%;
+              border-radius: 50%;
               background-color: #ddd;
               position: absolute;
               left: 0;
@@ -145,7 +145,7 @@ export const AllEpisodes = styled.section`
       }
 
       & th{
-          color: ${(props: PropsTheme) => props.theme.colors.border_darker};
+          color: ${(props: PropsTheme) => props.theme.colors.text};
           text-transform: uppercase;
           font: 500 0.75rem Lexend, sans-serif;
           text-align: left;

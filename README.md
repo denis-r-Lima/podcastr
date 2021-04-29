@@ -21,6 +21,8 @@ docker-compose up
 #or
 docker-compose up -d #for detached mode
 ```
+*Note: The docker-compose will initialize the database and run init-mongo.js to create a db, a user, a collection and to insert the data on the collection
+
 Create one .env.local file with the following env variables:
 
 ```bash

@@ -67,7 +67,7 @@ export const ThumbnailContainer = styled.div`
       & :first-child{
           top:50%;
           left: 0;
-          background: ${(props: PropsTheme) => props.theme.colors.Player_background};
+          background: ${(props: PropsTheme) => props.theme.colors.Player_button};
           transform: translate(-50%, -50%)
       }
 
