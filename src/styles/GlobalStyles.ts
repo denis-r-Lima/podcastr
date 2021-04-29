@@ -21,6 +21,7 @@ export default createGlobalStyle `
         border: 0;
         margin: 0;
         box-sizing: border-box;
+        transition:background 0.4s ,background-color 0.4s, color 0.4s;
     }
 
 

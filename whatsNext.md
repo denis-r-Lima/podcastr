@@ -1,10 +1,10 @@
-### Use next serverless API to create api
+### Use next serverless API to create api #Done
 
-### Use docker to run a MongoDB database for data
+### Use docker to run a MongoDB database for data #Done
 
 ### Make design responsive
 
-### Dark Theme
+### Dark Theme #Done
 
-### Do not repeat on shuffle (unless repeat is selected)
+### Do not repeat on shuffle (unless repeat is selected) #Done
 
