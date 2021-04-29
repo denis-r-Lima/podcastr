@@ -25,7 +25,7 @@ export default createGlobalStyle `
 
 
     body{
-        background-color: ${(props: PropsTheme) => props.theme.colors.gray_50};
+        background-color: ${(props: PropsTheme) => props.theme.colors.background};
         
     }
 
@@ -33,7 +33,7 @@ export default createGlobalStyle `
         font-weight: 500;
         font-size: 1rem;
         font-family: 'Inter', sans-serif;
-        color: ${(props: PropsTheme) => props.theme.colors.gray_500};
+        color: ${(props: PropsTheme) => props.theme.colors.text};
     }
 
     button{
@@ -55,6 +55,25 @@ export default createGlobalStyle `
     h1,h2,h3,h4,h5,h6{
         font-weight: 600;
         font-family: Lexend, sans-serif;
-        color: ${(props: PropsTheme) => props.theme.colors.gray_800};
+        color: ${(props: PropsTheme) => props.theme.colors.text_darker};
+    }
+
+    ::-webkit-scrollbar {
+        width: 0.3rem;
+    }
+
+        /* Track */
+    ::-webkit-scrollbar-track {
+        background: #eee; 
+    }
+        
+        /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888; 
+    }
+
+        /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
     }
 `

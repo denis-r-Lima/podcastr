@@ -14,7 +14,7 @@ export const Container = styled.div`
 
   & header{
       padding-bottom: 1rem;
-      border-bottom: 1px solid ${(props: PropsTheme) => props.theme.colors.gray_100};
+      border-bottom: 1px solid ${(props: PropsTheme) => props.theme.colors.border};
 
       & h1{
           margin-top: 2rem;
@@ -67,14 +67,14 @@ export const ThumbnailContainer = styled.div`
       & :first-child{
           top:50%;
           left: 0;
-          background: ${(props: PropsTheme) => props.theme.colors.purple_500};
+          background: ${(props: PropsTheme) => props.theme.colors.Player_background};
           transform: translate(-50%, -50%)
       }
 
       & :last-child{
           top:50%;
           right: 0;
-          background: ${(props: PropsTheme) => props.theme.colors.green_500};
+          background: ${(props: PropsTheme) => props.theme.colors.green};
           transform: translate(50%, -50%)
       }
 
@@ -87,7 +87,7 @@ export const ThumbnailContainer = styled.div`
 export const Description = styled.div`
   margin-top: 2rem;
   line-height: 1.675rem;
-  color: ${(props: PropsTheme) => props.theme.colors.gray_800};
+  color: ${(props: PropsTheme) => props.theme.colors.text_darker};
 
   & p{
       margin: 1.5rem 0;

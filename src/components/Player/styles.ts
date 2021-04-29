@@ -6,7 +6,7 @@ export const Container = styled.div`
   height: 100vh;
   padding: 3rem 4rem;
 
-  background-color: ${(props: PropsTheme) => props.theme.colors.purple_500};
+  background-color: ${(props: PropsTheme) => props.theme.colors.Player_background};
   color: ${(props: PropsTheme) => props.theme.colors.white};
 
   display: flex;
@@ -37,7 +37,7 @@ export const Container = styled.div`
 export const EmptyPlayer = styled.div`
     width: 100%;
     height: 20rem;
-    border: 2px dashed ${(props: PropsTheme) => props.theme.colors.gray_200};
+    border: 2px dashed ${(props: PropsTheme) => props.theme.colors.border_darker};
     border-radius: 1.5rem;
     background: linear-gradient(143.8deg, rgba(145,100,250,08)0%, rgba(0,0,0,0)100%);
 
@@ -92,7 +92,7 @@ export const Progress = styled.div`
 export const EmptySlider = styled.div`
     width: 100%;
     height: 4px;
-    background-color: ${(props: PropsTheme) => props.theme.colors.purple_300};
+    background-color: ${(props: PropsTheme) => props.theme.colors.Player_slider};
     border-radius: 2px;
 `
 
@@ -108,7 +108,7 @@ export const Buttons = styled.div`
         border: none;
         outline: none;
         font-size: 0;
-        color: ${(props: PropsTheme) => props.theme.colors.purple_800};
+        color: ${(props: PropsTheme) => props.theme.colors.Player_button};
         transition: filter 0.3s;
 
         & :disabled{
@@ -124,7 +124,7 @@ export const Buttons = styled.div`
             width: 4rem;
             height: 4rem;
             border-radius: 1rem;
-            background: ${(props: PropsTheme) => props.theme.colors.purple_400};
+            background: ${(props: PropsTheme) => props.theme.colors.Player_button_light};
 
             & :hover:not(:disabled){
                 filter: brightness(0.95)

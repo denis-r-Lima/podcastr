@@ -20,8 +20,8 @@ export const LatestEpisodes = styled.section`
       gap: 1.5rem;
 
       & li{
-          background: ${(props: PropsTheme) => props.theme.colors.white};
-          border: 1px solid ${(props: PropsTheme) => props.theme.colors.gray_100};
+          background: ${(props: PropsTheme) => props.theme.colors.background_light};
+          border: 1px solid ${(props: PropsTheme) => props.theme.colors.border};
           padding: 1.25rem;
           border-radius: 1.5rem;
           position: relative;
@@ -56,7 +56,7 @@ export const Buttons = styled.div`
         width: 2.5rem;
         height: 2.5rem;
         background: ${(props: PropsTheme) => props.theme.colors.white};
-        border: 1px solid ${(props: PropsTheme) => props.theme.colors.gray_100};
+        border: 1px solid ${(props: PropsTheme) => props.theme.colors.border};
         border-radius: 0.675rem;
         font-size: 0;
         display: grid;
@@ -69,18 +69,6 @@ export const Buttons = styled.div`
         }
         & :hover{
             filter: brightness(0.95);
-            & ::after{
-                    content: "Play";
-                    background: #fff;
-                    position: absolute;
-                    top: -1.5rem;
-                    left: 0;
-                    border: 0.8px solid ${(props: PropsTheme) => props.theme.colors.gray_500};
-                    font-size: 0.7rem;
-                    padding: 0 0.5rem;
-                    z-index: 10;
-                    filter: none;
-                }
               }
 
         & :last-child{
@@ -91,27 +79,8 @@ export const Buttons = styled.div`
             border-radius: 0.675rem;
             font-size: 1.5rem;
             transition: filter 0.3s;
-            & :hover {
-                & ::after{
-                        content: "Add to playlist";
-                        background: #fff;
-                        position: absolute;
-                        white-space: nowrap;
-                        top: -1.5rem;
-                        left: 0;
-                        /* transform: translateX(-50%); */
-                        border: 0.8px solid ${(props: PropsTheme) => props.theme.colors.gray_500};
-                        font-size: 0.7rem;
-                        padding: 0 0.5rem;
-                        z-index: 10;
-                        filter: none;
-                    }
-
             }
         }
-    }
-
-    
 `
 
 export const Details = styled.div`
@@ -120,7 +89,7 @@ export const Details = styled.div`
 
   & a{
       display: block;
-      color: ${(props: PropsTheme) => props.theme.colors.gray_800};
+      color: ${(props: PropsTheme) => props.theme.colors.text_darker};
       font-family: Lexend, sans-serif;
       font-weight: 600;
       text-decoration: none;
@@ -172,11 +141,11 @@ export const AllEpisodes = styled.section`
 
       & th , td{ 
         padding: 0.75rem 1rem;
-        border-bottom: 1px solid ${(props: PropsTheme) => props.theme.colors.gray_100};
+        border-bottom: 1px solid ${(props: PropsTheme) => props.theme.colors.border};
       }
 
       & th{
-          color: ${(props: PropsTheme) => props.theme.colors.gray_200};
+          color: ${(props: PropsTheme) => props.theme.colors.border_darker};
           text-transform: uppercase;
           font: 500 0.75rem Lexend, sans-serif;
           text-align: left;
@@ -192,7 +161,7 @@ export const AllEpisodes = styled.section`
           }
 
           & a{
-            color: ${(props: PropsTheme) => props.theme.colors.gray_800};
+            color: ${(props: PropsTheme) => props.theme.colors.text_darker};
             font-family: Lexend, sans-serif;
             font-weight: 600;
             text-decoration: none;
@@ -208,7 +177,7 @@ export const AllEpisodes = styled.section`
             width: 2.5rem;
             height: 2.5rem;
             background: ${(props: PropsTheme) => props.theme.colors.white};
-            border: 1px solid ${(props: PropsTheme) => props.theme.colors.gray_100};
+            border: 1px solid ${(props: PropsTheme) => props.theme.colors.border};
             border-radius: 0.5rem;
             font-size: 0;
             transition: filter 0.3s;
@@ -224,7 +193,7 @@ export const AllEpisodes = styled.section`
             }
             & :last-child{               
                 border: none;
-                background: ${(props: PropsTheme) => props.theme.colors.gray_50};
+                background: ${(props: PropsTheme) => props.theme.colors.white};
                 font-size: 1.5rem;
                 
             }

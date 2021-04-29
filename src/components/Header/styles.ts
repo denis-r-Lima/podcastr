@@ -2,17 +2,17 @@ import styled from 'styled-components';
 import { PropsTheme } from '../../Themes';
 
 export const Container = styled.header`
-    background-color: ${(props: PropsTheme) => props.theme.colors.white};
+    background-color: ${(props: PropsTheme) => props.theme.colors.background_light};
     height: 6.5rem;
     display: flex;
     align-items: center;
     padding: 2rem 4rem;
-    border-bottom: 1px solid ${(props: PropsTheme) => props.theme.colors.gray_100};
+    border-bottom: 1px solid ${(props: PropsTheme) => props.theme.colors.border};
 
     & p{
         margin-left: 2rem;
         padding: 0.25rem 0 0.25rem 2rem;
-        border-left: 1px solid ${(props: PropsTheme) => props.theme.colors.gray_100};
+        border-left: 1px solid ${(props: PropsTheme) => props.theme.colors.border};
     }
 
     & span{
@@ -22,5 +22,8 @@ export const Container = styled.header`
 
     & img{
         cursor: pointer;
+        background: ${(props: PropsTheme) => props.theme.colors.white};
+        border-radius: 0.5rem;
+        padding: 0.3rem 0.5rem;
     }
 `;
