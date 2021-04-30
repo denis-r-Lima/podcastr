@@ -1,20 +1,8 @@
 import styled from 'styled-components';
-import { PropsTheme } from '../../Themes';
 
 
 export const Container = styled.div`
-  position: absolute;
-  top: 1.5rem;
-  right: 1rem;
-  & ::before{
-      content: "Lights";
-      position: absolute;
-      top:0;
-      left: 50%;
-      transform:translate(-50%, -110%);
-      color: ${(props: PropsTheme) => props.theme.colors.white};
-      font-size: 0.675rem;
-  }
+  margin-left: auto;
 `;
 
 export const Tracker = styled.div`
@@ -22,39 +10,27 @@ export const Tracker = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 3rem;
+    width: 4rem;
     height: 1.5rem;
-    border: 1px solid ${(props: PropsTheme) => props.theme.colors.text};
+    border: 1px solid ${(props) => props.theme.colors.text};
     border-radius: 1rem;
-    background-color:${(props: PropsTheme) => props.theme.colors.ThemeButton};
+    background-color:${(props) => props.theme.colors.ThemeButton};
     transition: all 0.5s;
-    & ::before{
-        content: "OFF";
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translate(0.3rem, -50%);
-        font-size: 0.525rem;
-    }
-    & ::after{
-            content: "ON";
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translate(-0.3rem, -50%);
-            font-size: 0.525rem;
-            color: ${(props: PropsTheme) => props.theme.colors.white};
-        }
+    color: #333;
+    
 `
 
 export const Handle= styled.div`
-    width: 1.5rem;
-    height: 1.5rem;
-    border: 1px solid ${(props: PropsTheme) => props.theme.colors.text};
+    width: 2.2rem;
+    height: 2.2rem;
+    border: 1px solid ${(props) => props.theme.colors.text};
     border-radius: 50%;
     transform: translateX(50%);
-    background-color:${(props: PropsTheme) => props.theme.colors.white};
+    background-color:${(props) => props.theme.colors.white};
     transition: transform 0.5s;
+    display: grid;
+    place-items: center;
+    font-size: 1rem;
     
     &.Dark{
         transform: translateX(-50%);

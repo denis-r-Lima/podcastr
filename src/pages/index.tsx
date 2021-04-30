@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 
 import { format , parseISO} from 'date-fns'
-import { MdPlaylistAdd } from 'react-icons/md'
+import { MdPlaylistAdd , MdPlayArrow} from 'react-icons/md'
 
 import { api } from "../services/api"
 import { convertDurationToTimeString } from "../utils/convertDurationToTimeString"
@@ -61,7 +61,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                 </Details>
                 <Buttons>
                   <button onClick={() => play(episode)}>
-                    <img src="/play-green.svg" alt="Play episode" style={{width: '1.5rem'}}  />
+                    <MdPlayArrow/>
                   </button>
                   <button onClick={() => addToList(episode)}>
                     <MdPlaylistAdd />
@@ -79,9 +79,9 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
             <tr>
               <th></th>
               <th>Podcast</th>
-              <th>Members</th>
-              <th>Date</th>
-              <th>Duration</th>
+              <th className="not_Display">Members</th>
+              <th className="not_Display">Date</th>
+              <th className="not_Display">Duration</th>
               <th></th>
             </tr>
           </thead>
@@ -104,15 +104,16 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                         <a>{episode.title}</a>
                       </Link>
                     </td>
-                    <td>{episode.members}</td>
-                    <td style={{width: 120}}>{episode.publishedAt}</td>
-                    <td>{episode.durationAsString}</td>
+                    <td className="not_Display">{episode.members}</td>
+                    <td style={{width: 120}} className="not_Display">{episode.publishedAt}</td>
+                    <td className="not_Display">{episode.durationAsString}</td>
                     <td>
                       <button onClick={() => play(episode)}>
-                        <img src="/play-green.svg" alt="Play episode"/>
+                        {/* <img src="/play-green.svg" alt="Play episode"/> */}
+                        <MdPlayArrow size="1.5rem"/>
                       </button>
                       <button onClick={() => addToList(episode)}>
-                        <MdPlaylistAdd color="#808080" size="1.5rem"/>
+                        <MdPlaylistAdd/>
                       </button>
                     </td>
                   </tr>

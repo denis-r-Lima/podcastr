@@ -1,6 +1,5 @@
 import { Header } from '../components/Header'
 import { Player } from '../components/Player'
-import { ThemeButton } from '../components/ThemeButton'
 import { PlayerContextProvider } from '../contexts/PlayerContext'
 import ThemeContextProvider from '../contexts/themeContext'
 import { Container } from '../styles/app'
@@ -21,7 +20,6 @@ function MyApp({ Component, pageProps }) {
               <Component {...pageProps} />
             </main>
             <Player />
-            <ThemeButton />
           </Container>
         </Theme>
       </ThemeContextProvider>

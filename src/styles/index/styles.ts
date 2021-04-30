@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { PropsTheme } from '../../Themes';
 
 export const Container = styled.div`
-  padding: 0 4rem;
+  padding: 0 2rem;
   height: calc(100vh - 6.5rem);
   overflow-y: auto;
 
@@ -10,21 +9,30 @@ export const Container = styled.div`
       margin-top: 3rem;
       margin-bottom: 1.5rem;
   }
+
+  @media (max-width: 420px){
+      padding: 0 1rem;
+  }
 `;
 
 export const LatestEpisodes = styled.section`
   & ul{
       list-style: none;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
       gap: 1.5rem;
 
       & li{
-          background: ${(props: PropsTheme) => props.theme.colors.background_light};
-          border: 1px solid ${(props: PropsTheme) => props.theme.colors.border};
+          background: ${(props) => props.theme.colors.background_light};
+          border: 1px solid ${(props) => props.theme.colors.border};
           padding: 1.25rem;
           border-radius: 1.5rem;
           position: relative;
+          min-width: 33rem;
+          width: calc(50% - 0.75rem);
 
           display: flex;
           align-items: center;
@@ -32,11 +40,8 @@ export const LatestEpisodes = styled.section`
           & img{
               width: 6rem;
               height: 6rem;
-              border-radius: 1rem;
-              
-          }
-
-          
+              border-radius: 1rem;          
+          }         
       }
   }
 `;
@@ -55,14 +60,15 @@ export const Buttons = styled.div`
     & button{
         width: 2.5rem;
         height: 2.5rem;
-        background: ${(props: PropsTheme) => props.theme.colors.white};
-        border: 1px solid ${(props: PropsTheme) => props.theme.colors.border};
+        background: ${(props) => props.theme.colors.white};
+        border: 1px solid ${(props) => props.theme.colors.border};
         border-radius: 0.675rem;
-        font-size: 0;
+        font-size: 1.5rem;
         display: grid;
         place-content: center; 
         transition: filter 0.3s;
         position: relative;
+        color: ${(props) => props.theme.colors.green};
         & img{
             width: 1.5rem;
             height: 1.5rem;
@@ -74,7 +80,8 @@ export const Buttons = styled.div`
         & :last-child{
             width: 2.5rem;
             height: 2.5rem;
-            background: ${(props: PropsTheme) => props.theme.colors.white};
+            background-color: ${(props) => props.theme.colors.background_light};
+            color: ${(props) => props.theme.colors.text_darker};
             border: none;
             border-radius: 0.675rem;
             font-size: 1.5rem;
@@ -89,7 +96,7 @@ export const Details = styled.div`
 
   & a{
       display: block;
-      color: ${(props: PropsTheme) => props.theme.colors.text_darker};
+      color: ${(props) => props.theme.colors.text_darker};
       font-family: Lexend, sans-serif;
       font-weight: 600;
       text-decoration: none;
@@ -135,17 +142,16 @@ export const Details = styled.div`
 
 export const AllEpisodes = styled.section`
   padding-bottom: 2rem;
-
   & table{
-      width: 100%auto;
+      width: 100%;
 
       & th , td{ 
         padding: 0.75rem 1rem;
-        border-bottom: 1px solid ${(props: PropsTheme) => props.theme.colors.border};
+        border-bottom: 1px solid ${(props) => props.theme.colors.border};
       }
 
       & th{
-          color: ${(props: PropsTheme) => props.theme.colors.text};
+          color: ${(props) => props.theme.colors.text};
           text-transform: uppercase;
           font: 500 0.75rem Lexend, sans-serif;
           text-align: left;
@@ -161,7 +167,7 @@ export const AllEpisodes = styled.section`
           }
 
           & a{
-            color: ${(props: PropsTheme) => props.theme.colors.text_darker};
+            color: ${(props) => props.theme.colors.text_darker};
             font-family: Lexend, sans-serif;
             font-weight: 600;
             text-decoration: none;
@@ -176,12 +182,12 @@ export const AllEpisodes = styled.section`
           & button{
             width: 2.5rem;
             height: 2.5rem;
-            background: ${(props: PropsTheme) => props.theme.colors.white};
-            border: 1px solid ${(props: PropsTheme) => props.theme.colors.border};
+            background: ${(props) => props.theme.colors.white};
+            border: 1px solid ${(props) => props.theme.colors.border};
             border-radius: 0.5rem;
             font-size: 0;
             transition: filter 0.3s;
-
+            color: ${(props) => props.theme.colors.green};
             display: grid;
             place-content: center; 
             & img{
@@ -193,11 +199,21 @@ export const AllEpisodes = styled.section`
             }
             & :last-child{               
                 border: none;
-                background: ${(props: PropsTheme) => props.theme.colors.white};
+                background-color: ${(props) => props.theme.colors.background};
+                color: ${(props) => props.theme.colors.text_darker};
                 font-size: 1.5rem;
-                
             }
           }
       }
   }
+  @media (max-width: 400px){
+          & table{
+              & td, th{
+                &.not_Display{
+                    display:none;
+                }
+              }
+          }
+          
+      }
 `;

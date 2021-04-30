@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { PropsTheme } from '../../Themes';
 
 export const OuterContainer = styled.div`
     height: calc(100vh - 6.5rem);
@@ -14,7 +13,7 @@ export const Container = styled.div`
 
   & header{
       padding-bottom: 1rem;
-      border-bottom: 1px solid ${(props: PropsTheme) => props.theme.colors.border};
+      border-bottom: 1px solid ${(props) => props.theme.colors.border};
 
       & h1{
           margin-top: 2rem;
@@ -60,21 +59,24 @@ export const ThumbnailContainer = styled.div`
       border: 0;
       position: absolute;
       z-index: 5;
-      font-size: 0;
+      font-size: 1.8rem;
+      display: grid;
+      place-items: center;
+      color: ${(props) => props.theme.colors.white};
 
       transition: filter 0.3s;
 
       & :first-child{
           top:50%;
           left: 0;
-          background: ${(props: PropsTheme) => props.theme.colors.Player_button};
+          background: ${(props) => props.theme.colors.Player_button};
           transform: translate(-50%, -50%)
       }
 
       & :last-child{
           top:50%;
           right: 0;
-          background: ${(props: PropsTheme) => props.theme.colors.green};
+          background: ${(props) => props.theme.colors.green};
           transform: translate(50%, -50%)
       }
 
@@ -87,7 +89,7 @@ export const ThumbnailContainer = styled.div`
 export const Description = styled.div`
   margin-top: 2rem;
   line-height: 1.675rem;
-  color: ${(props: PropsTheme) => props.theme.colors.text_darker};
+  color: ${(props) => props.theme.colors.text_darker};
 
   & p{
       margin: 1.5rem 0;

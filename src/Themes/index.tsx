@@ -29,7 +29,7 @@ export const themeLight = {
       border_darker: '#3f3f3f',
       text: '#999',
       text_darker: '#aaa',
-      green: '#01612c',
+      green: '#02aa4e',
       Player_slider: '#9f75ff',
       Player_button_light: '#9164fa',
       Player_background: '#22223A',
@@ -38,9 +38,6 @@ export const themeLight = {
     }
   }
   
-  export type PropsTheme = {
-    theme: typeof themeLight
-  }
 
   type ThemeProps = {
     children: ReactNode

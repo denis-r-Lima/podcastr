@@ -1,12 +1,21 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Image from 'next/image'
 import Slider from 'rc-slider'
+import { 
+    IoRepeat, 
+    IoPlaySharp, 
+    IoPlaySkipForwardSharp, 
+    IoPlaySkipBackSharp,  
+    IoShuffle,
+    IoPauseSharp,
+} from 'react-icons/io5'
 
 import 'rc-slider/assets/index.css'
 
 import { usePlayerContext } from "../../contexts/PlayerContext";
 import { Container, EmptyPlayer, Progress, EmptySlider, Buttons, CurrentPlaying } from "./styles";
 import { convertDurationToTimeString } from "../../utils/convertDurationToTimeString";
+import { ThemeContext } from "styled-components";
 
 export function Player() {
 
@@ -26,6 +35,9 @@ export function Player() {
         playOrder} = usePlayerContext()
 
     const audioRef = useRef<HTMLAudioElement>(null)
+    const playerRef = useRef<HTMLDivElement>(null)
+
+    const { colors } = useContext(ThemeContext)
 
     useEffect(()=>{
         if(!audioRef.current){
@@ -58,8 +70,22 @@ export function Player() {
         setProgress(e)
     }
 
+    function openClosePlayer(e: React.MouseEvent<HTMLDivElement>) {
+
+        if(window.innerWidth > 720) return
+        
+        const isVisible = playerRef.current.classList.contains('visible')
+
+        if(isVisible && e.clientX < e.currentTarget.offsetLeft){
+            playerRef.current.classList.remove('visible')
+            return
+        }
+
+        playerRef.current.classList.add('visible')    
+    }
+
     return(
-        <Container>
+        <Container ref={playerRef} onClick={ e => openClosePlayer(e)}>
             <header>
                 <img src="/playing.svg" alt="Playing now"/>
                 <strong>Playing now</strong>
@@ -73,7 +99,7 @@ export function Player() {
                     </CurrentPlaying>
                 ):
                 (<EmptyPlayer>
-                    <strong>Select one podcast to enjoy!</strong>
+                    <strong>Select one podcast to play!</strong>
                 </EmptyPlayer>)
                 }
             <footer className={!episode? 'empty': ''}>
@@ -84,9 +110,9 @@ export function Player() {
                         <Slider 
                         max={episode.duration}
                         value={progress}
-                        trackStyle={{ backgroundColor: '#04d361'}}
-                        railStyle={{ backgroundColor: '#9f75ff' }}
-                        handleStyle={{ borderColor: '#04d361', borderWidth: 3 }}
+                        trackStyle={{ backgroundColor: colors.green}}
+                        railStyle={{ backgroundColor: colors.Player_button_light }}
+                        handleStyle={{ borderColor: colors.green, borderWidth: 3 }}
                         onChange={e => onSlide(e)}
                         />
                     ):
@@ -115,12 +141,14 @@ export function Player() {
                     className={isShuffling ? 'isActive': ''}
                     onClick={toggleShuffle}
                     >
-                        <img src="/shuffle.svg" alt="Shuffle"/>
+                        {/* <img src="/shuffle.svg" alt="Shuffle"/> */}
+                        <IoShuffle />
                     </button>
                     <button 
                     disabled={!episode || currentEpisodeIndex === 0} 
                     onClick={previousEpisode}>
-                        <img src="/play-previous.svg" alt="Previous"/>
+                        {/* <img src="/play-previous.svg" alt="Previous"/> */}
+                        <IoPlaySkipBackSharp />
                     </button>
                     <button 
                     className="play" 
@@ -128,8 +156,10 @@ export function Player() {
                     onClick={togglePlay}
                     >
                         { isPlaying && episode ? 
-                        <img src="/pause.svg" alt="Pause"/> :
-                        <img src="/play.svg" alt="Play"/>    
+                        // <img src="/pause.svg" alt="Pause"/>
+                        <IoPauseSharp /> :
+                        // <img src="/play.svg" alt="Play"/>    
+                        <IoPlaySharp />
                     }
                     </button>
                     <button 
@@ -138,13 +168,15 @@ export function Player() {
                          }
                     onClick={nextEpisode}
                     >
-                        <img src="/play-next.svg" alt="Next"/>
+                        {/* <img src="/play-next.svg" alt="Next"/> */}
+                        <IoPlaySkipForwardSharp />
                     </button>
                     <button 
                     disabled={!episode} 
                     onClick={toggleLoop} 
                     className={isLooping ? 'isActive': ''}>
-                        <img src="/repeat.svg" alt="Repeat"/>
+                        {/* <img src="/repeat.svg" alt="Repeat"/> */}
+                        <IoRepeat />
                     </button>
                 </Buttons>
             </footer>

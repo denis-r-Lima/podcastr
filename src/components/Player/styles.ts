@@ -1,13 +1,12 @@
 import styled from 'styled-components';
-import { PropsTheme } from '../../Themes';
 
 export const Container = styled.div`
   width: 25.6rem;
-  height: 100vh;
+  height:100%;
   padding: 3rem 4rem;
 
-  background-color: ${(props: PropsTheme) => props.theme.colors.Player_background};
-  color: ${(props: PropsTheme) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.Player_background};
+  color: ${(props) => props.theme.colors.white};
 
   display: flex;
   flex-direction: column;
@@ -18,6 +17,7 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       gap: 1rem;
+      margin-bottom: auto;
   }
 
   & strong{
@@ -32,17 +32,63 @@ export const Container = styled.div`
       }
   }
   
+  @media (max-width: 720px) {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        transform: translateX(100%);
+        transition: transform 0.4s;
+
+        & ::before{
+            content: "Open Player";
+            position: relative;
+            left: -50%;
+            width: 8rem;
+            text-align: center;
+            margin: 0 auto;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem 1rem 0 0;
+            font-weight: bold;
+            transform: translate(-50%, 50vh) rotate(-90deg);
+            background-color: ${(props) => props.theme.colors.Player_background};
+            color:${(props) => props.theme.colors.white};
+            cursor: pointer;
+        }
+     
+
+        &.visible{
+            transform: translateX(0%);
+
+            & ::before{
+            content: "Close Player";
+            position: relative;
+            left: -50%;
+            width: 8rem;
+            text-align: center;
+            margin: 0 auto;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem 1rem 0 0;
+            font-weight: bold;
+            transform: translate(-50%, 50vh) rotate(-90deg);
+            background-color: ${(props) => props.theme.colors.Player_background};
+            color:${(props) => props.theme.colors.white};
+            cursor: pointer;
+        }
+        }
+    }
+
 `;
 
 export const EmptyPlayer = styled.div`
     width: 100%;
     height: 20rem;
-    border: 2px dashed ${(props: PropsTheme) => props.theme.colors.border_darker};
+    border: 2px dashed ${(props) => props.theme.colors.border_darker};
     border-radius: 1.5rem;
     background: linear-gradient(143.8deg, rgba(145,100,250,08)0%, rgba(0,0,0,0)100%);
 
     padding: 4rem;
     text-align: center;
+    margin: auto 0;
 
     display: flex;
     align-items: center;
@@ -55,6 +101,8 @@ export const CurrentPlaying = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
+    margin: auto 0;
+
 
     & strong{
         display: block;
@@ -92,7 +140,7 @@ export const Progress = styled.div`
 export const EmptySlider = styled.div`
     width: 100%;
     height: 4px;
-    background-color: ${(props: PropsTheme) => props.theme.colors.Player_slider};
+    background-color: ${(props) => props.theme.colors.Player_slider};
     border-radius: 2px;
 `
 
@@ -107,10 +155,11 @@ export const Buttons = styled.div`
         background-color: transparent;
         border: none;
         outline: none;
-        font-size: 0;
-        color: ${(props: PropsTheme) => props.theme.colors.Player_button};
+        font-size: 1.7rem;
+        color: ${(props) => props.theme.colors.white};
         transition: filter 0.3s;
-
+        display: grid;
+        place-items: center;
         & :disabled{
             cursor: default;
             opacity: 0.6;
@@ -124,7 +173,8 @@ export const Buttons = styled.div`
             width: 4rem;
             height: 4rem;
             border-radius: 1rem;
-            background: ${(props: PropsTheme) => props.theme.colors.Player_button_light};
+            font-size: 2rem;
+            background: ${(props) => props.theme.colors.Player_button_light};
 
             & :hover:not(:disabled){
                 filter: brightness(0.95)
@@ -132,10 +182,9 @@ export const Buttons = styled.div`
         }
 
         &.isActive{
-            filter: invert(0.35) sepia(1) saturate(3) hue-rotate(80deg);
-
+            color: ${(props) => props.theme.colors.green};
             & :hover{
-                filter: brightness(0.65) invert(0.35) sepia(1) saturate(3) hue-rotate(80deg);
+                filter: brightness(0.65);
             }
 
         }

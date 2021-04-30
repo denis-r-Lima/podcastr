@@ -1,4 +1,4 @@
-import { useState, createContext, ReactNode, useContext } from 'react'
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
 type ThemeContextType = {
     isDarkTheme: boolean,
@@ -12,8 +12,27 @@ type ThemeContextProviderProps = {
   }
 
 export default function ThemeContextProvider({ children }: ThemeContextProviderProps){
-
+    
     const [isDarkTheme , setIsDarkTheme] = useState(false)
+
+    useEffect(() => {
+        const storageTheme = localStorage.getItem('theme')
+        try{
+            const theme = JSON.parse(storageTheme)
+    
+            const themeType = typeof theme
+            
+            if(storageTheme && themeType === 'boolean') {
+                setIsDarkTheme(theme)}
+        }catch(err){
+            return
+        }
+
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('theme', JSON.stringify(isDarkTheme))
+    }, [isDarkTheme])
 
     const toggleTheme = () => {
         setIsDarkTheme(current => !current)

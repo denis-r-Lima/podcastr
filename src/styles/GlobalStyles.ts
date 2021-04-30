@@ -1,40 +1,32 @@
 import { createGlobalStyle } from 'styled-components'
 
-import { PropsTheme } from '../Themes'
-
 
 export default createGlobalStyle `
-    @media (max-width: 1080px) {
-        html{
-            font-size: 93.75%
-        }
-    }
-
-    @media (max-width: 720px) {
-        html{
-            font-size: 87.5%
-        }
-    }
 
     *{
         padding: 0;
         border: 0;
         margin: 0;
         box-sizing: border-box;
-        transition:background 0.4s ,background-color 0.4s, color 0.4s;
+        transition:background 0.3s ,background-color 0.3s, color 0.3s;
     }
 
+    html{
+        font-size: 75%;
+    }
 
     body{
-        background-color: ${(props: PropsTheme) => props.theme.colors.background};
-        
+        background-color: ${(props) => props.theme.colors.background};
+        width: 100vw;
+        height: 100vh;  
+        overflow: hidden;
     }
 
     body, input, textarea, button{
         font-weight: 500;
         font-size: 1rem;
         font-family: 'Inter', sans-serif;
-        color: ${(props: PropsTheme) => props.theme.colors.text};
+        color: ${(props) => props.theme.colors.text};
     }
 
     button{
@@ -56,7 +48,7 @@ export default createGlobalStyle `
     h1,h2,h3,h4,h5,h6{
         font-weight: 600;
         font-family: Lexend, sans-serif;
-        color: ${(props: PropsTheme) => props.theme.colors.text_darker};
+        color: ${(props) => props.theme.colors.text_darker};
     }
 
     ::-webkit-scrollbar {
@@ -76,5 +68,17 @@ export default createGlobalStyle `
         /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
         background: #555; 
+    }
+
+    @media (max-width: 1080px) {
+        html{
+            font-size: 75%;
+        }
+    }
+
+    @media (max-width: 920px) {
+        html{
+            font-size: 62.5%;
+        }
     }
 `

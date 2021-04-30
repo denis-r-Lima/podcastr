@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head'
+import { IoPlaySharp, IoChevronBack } from 'react-icons/io5'
 
 import { api } from '../../services/api'
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString'
@@ -41,7 +42,8 @@ export default function Episode({ episode }: EpisodeProps) {
                 <ThumbnailContainer>
                     <Link href="/">
                         <button>
-                            <img src="/arrow-left.svg" alt="Back"/>
+                            {/* <img src="/arrow-left.svg" alt="Back"/> */}
+                            <IoChevronBack />
                         </button>
                     </Link>
                     <Image 
@@ -50,7 +52,8 @@ export default function Episode({ episode }: EpisodeProps) {
                     src={episode.thumbnail} 
                     objectFit="cover" />
                     <button onClick={() => {play(episode)}}>
-                        <img src="/play.svg" alt="play podcast"/>
+                        {/* <img src="/play.svg" alt="play podcast"/> */}
+                        <IoPlaySharp />
                     </button>
                 </ThumbnailContainer>
                 <header>
