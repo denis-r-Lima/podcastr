@@ -2,7 +2,7 @@
 
 ### Use docker to run a MongoDB database for data #Done
 
-### Make design responsive
+### Make design responsive #Done
 
 ### Dark Theme #Done
 

@@ -5,7 +5,6 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
   & main{
-      height: 100%;
-      width: auto;
+      flex: 1;
   }
 `;

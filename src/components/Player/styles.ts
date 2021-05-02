@@ -12,6 +12,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  
 
   & header{
       display: flex;
@@ -39,6 +40,8 @@ export const Container = styled.div`
         transform: translateX(100%);
         transition: transform 0.4s;
 
+        z-index: 10;
+
         & ::before{
             content: "Open Player";
             position: relative;
@@ -49,7 +52,7 @@ export const Container = styled.div`
             padding: 0.5rem 1rem;
             border-radius: 1rem 1rem 0 0;
             font-weight: bold;
-            transform: translate(-50%, 50vh) rotate(-90deg);
+            transform: translate(-60%, 50vh) rotate(-90deg);
             background-color: ${(props) => props.theme.colors.Player_background};
             color:${(props) => props.theme.colors.white};
             cursor: pointer;
@@ -69,7 +72,7 @@ export const Container = styled.div`
             padding: 0.5rem 1rem;
             border-radius: 1rem 1rem 0 0;
             font-weight: bold;
-            transform: translate(-50%, 50vh) rotate(-90deg);
+            transform: translate(-60%, 50vh) rotate(-90deg);
             background-color: ${(props) => props.theme.colors.Player_background};
             color:${(props) => props.theme.colors.white};
             cursor: pointer;
