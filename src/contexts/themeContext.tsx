@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
+import Cookie from '../utils/cookiesHandle'
 
 type ThemeContextType = {
     isDarkTheme: boolean,
@@ -16,22 +17,16 @@ export default function ThemeContextProvider({ children }: ThemeContextProviderP
     const [isDarkTheme , setIsDarkTheme] = useState(false)
 
     useEffect(() => {
-        const storageTheme = localStorage.getItem('theme')
-        try{
-            const theme = JSON.parse(storageTheme)
-    
-            const themeType = typeof theme
-            
-            if(storageTheme && themeType === 'boolean') {
-                setIsDarkTheme(theme)}
-        }catch(err){
-            return
-        }
+        const themeCookie = Cookie.GetCookie('user__dark__theme')
+
+        const cookieType = typeof themeCookie
+
+        if(themeCookie && cookieType === 'boolean') setIsDarkTheme(themeCookie)
 
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('theme', JSON.stringify(isDarkTheme))
+        Cookie.CreateCookie('user__dark__theme', isDarkTheme, 300)
     }, [isDarkTheme])
 
     const toggleTheme = () => {

@@ -8,6 +8,9 @@ db.createUser(
   },
 );
 
+db.createCollection('users');
+
+
 db.createCollection('episodes');
 
 db.episodes.insertMany([

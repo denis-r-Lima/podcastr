@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { format , parseISO} from 'date-fns'
 import { MdPlaylistAdd , MdPlayArrow} from 'react-icons/md'
 
-import { api } from "../services/api"
+import api from "../services/api"
 import { convertDurationToTimeString } from "../utils/convertDurationToTimeString"
 import { Container , AllEpisodes, LatestEpisodes, Details, Buttons} from "../styles/index/styles"
 import { usePlayerContext } from "../contexts/PlayerContext"

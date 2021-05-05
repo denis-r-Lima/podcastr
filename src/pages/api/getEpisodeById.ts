@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import Episodes from "../../services/database/episodeSchema"
+import Episodes from "../../services/database/Schema/episodeSchema"
 
 export default async function getEpisodeById (request: NextApiRequest, response: NextApiResponse) {
 
@@ -10,9 +10,9 @@ export default async function getEpisodeById (request: NextApiRequest, response:
 
     try{
         const episodes = await Episodes.findOne({slug})
-        response.status(200).json(episodes)
+        return response.status(200).json(episodes)
     }catch(err){
-        response.status(400).json(err)
+        return response.status(400).json(err)
     }
 
 

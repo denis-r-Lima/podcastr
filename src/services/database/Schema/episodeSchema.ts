@@ -1,7 +1,7 @@
-import mongoose from './connect'
+import mongoose from '../connect'
 
 const episodeSchema = new mongoose.Schema({
-    id:{
+    slug:{
         type: String,
         required: true,
     },      

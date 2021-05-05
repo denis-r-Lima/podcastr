@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { IoPlaySharp, IoChevronBack } from 'react-icons/io5'
 
-import { api } from '../../services/api'
+import api from '../../services/api'
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString'
 import { Container, ThumbnailContainer, Description, OuterContainer } from './styles'
 import { usePlayerContext } from '../../contexts/PlayerContext'
