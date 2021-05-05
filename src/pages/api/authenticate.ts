@@ -27,7 +27,7 @@ export default async function authenticate(request: NextApiRequest, response: Ne
         
         const expiresInSeconds =  10*24*60*60 //10 days in seconds
         
-        const token = jwt.sign({ id: user._id }, process.env.NEXT_PUBLIC_JWT_SECRET, {
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
             expiresIn: expiresInSeconds
         })
         return response.status(200).send({ token })

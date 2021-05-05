@@ -12,7 +12,7 @@ export default async function userCheck (request: NextApiRequest, response: Next
     const { user__token } = request.cookies
  
     try{
-        const userToken = jwt.verify(user__token, process.env.NEXT_PUBLIC_JWT_SECRET) as UserToken
+        const userToken = jwt.verify(user__token, process.env.JWT_SECRET) as UserToken
 
         if(userToken.id){
             const user = Users.findById(userToken.id)
