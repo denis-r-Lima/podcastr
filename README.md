@@ -29,6 +29,7 @@ Create one .env.local file with the following env variables:
 DB_URL # normally mongodb://localhost:27017/podcastr
 DB_USER #The user that is created on init-mongo.js
 DB_PASSWORD #user's password created on init-mongo.js
+JWT_SECRET #Secret for JWT 
 ```
 Run the development server:
 
