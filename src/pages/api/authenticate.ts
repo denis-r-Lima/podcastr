@@ -18,7 +18,7 @@ export default async function authenticate(request: NextApiRequest, response: Ne
     const user = await Users.findOne({ email }).select('+password') as UsersType
 
     if(!user){
-        return response.status(400).send({ error: 'User not found!' })
+        return response.status(400).send({ error: "User and password doesn't match" })
     }
 
     const checkPassword = await bcrypt.compare(password , user.password)
@@ -30,9 +30,12 @@ export default async function authenticate(request: NextApiRequest, response: Ne
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
             expiresIn: expiresInSeconds
         })
-        return response.status(200).send({ token })
+
+        const { name } = user
+
+        return response.status(200).send({ token , name})
     }
 
-    return response.status(400).send({ error: "Password doesn't match" })
+    return response.status(400).send({ error: "User and password doesn't match"  })
 
 }

@@ -1,12 +1,14 @@
 import { useRouter } from 'next/router'
-import { createContext, ReactNode, useContext, useEffect } from 'react'
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect } from 'react'
 
 import api from '../services/api'
 import Cookie from '../utils/cookiesHandle'
 
 type AuthenticationContextType = {
     isAuthenticated: boolean,
-    toggleAuthenticated: () => void
+    userName: string,
+    toggleAuthenticated: () => void,
+    setUserName: Dispatch<SetStateAction<string>>
 }
 
 const AuthenticationContext = createContext({} as AuthenticationContextType)
@@ -36,6 +38,7 @@ export function AuthenticationContextProvider (
             try{
                 const response = await api.get('/userCheck')
                 value.toggleAuthenticated()
+                value.setUserName(response.data.name)
                 if(Router.pathname === '/auth')  Router.push('/')
 
             }catch(err){

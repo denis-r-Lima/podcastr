@@ -1,8 +1,8 @@
-import { FormEvent, useRef } from 'react'
+import { FormEvent, useRef, useState } from 'react'
 import Lottie from 'react-lottie'
 import { useRouter } from 'next/router'
 
-import { OuterContainer, SignInContent, SignUpContent, Container, LottieDiv} from './styles'
+import { OuterContainer, SignInContent, SignUpContent, Container, LottieDiv, ErrorMessage} from './styles'
 import programmingAnimation from '../../../public/8306-programming-animation.json'
 import api from '../../services/api'
 import Cookie from '../../utils/cookiesHandle'
@@ -10,15 +10,18 @@ import { useAuthenticationContext } from '../../contexts/authenticationContext'
 
 export function LogIn(){
 
-    const { toggleAuthenticated } = useAuthenticationContext()
+    const { toggleAuthenticated, setUserName } = useAuthenticationContext()
 
     const Router = useRouter()
 
     const div = useRef<HTMLDivElement>(null)
 
-    const name = useRef<string>('')
-    const email = useRef<string>('')
-    const password = useRef<string>('')
+    const [ name, setName ] = useState<string>('')
+    const [ email, setEmail ] = useState<string>('')
+    const [ password, setPassword ] = useState<string>('')
+    const [ message, setMessage ] = useState<string>('')
+
+
 
 
     const defaultOptions = {
@@ -34,47 +37,52 @@ export function LogIn(){
         div.current.classList.contains('rotate') ?
         div.current.classList.remove('rotate') :
         div.current.classList.add('rotate')
-
-        name.current = ''
-        email.current = ''
-        password.current = ''
-
-
+        
+        setName('')
+        setPassword('')
+        setEmail('')
+        setMessage('')
     }
 
     async function handleSignUp(e: FormEvent<HTMLFormElement>){
         e.preventDefault()
 
         const body = {
-            name: name.current,
-            email: email.current,
-            password: password.current
+            name,
+            email,
+            password
         }
+        try{
+            await api.post('/register', body)
 
-        const user = await api.post('/register', body)
-        console.log(user)
+            flipCard()
+        }catch(err){
+            setMessage('Email already registered!')
+        }
     }
 
     async function handleSignIn(e: FormEvent<HTMLFormElement>){
         e.preventDefault()
 
         const body = {
-            email: email.current,
-            password: password.current
+            email,
+            password
         }
 
         try{
             const response = await api.post('/authenticate', body)
             
             const userToken = response.data.token
+            const userName = response.data.name
 
             Cookie.CreateCookie('user__token', userToken, 7)
             toggleAuthenticated()
+            setUserName(userName)
 
             Router.push('/')
 
         }catch(err){
-            console.log(err.response.data)
+            setMessage(err.response.data.error)
         }
 
         
@@ -91,9 +99,10 @@ export function LogIn(){
                     <h1>Sign In</h1>
                     <form onSubmit={ e => handleSignIn(e)}>
                         <label>Email:</label>
-                        <input type="email" name="email" onChange={ e => email.current = e.currentTarget.value} />
+                        <input type="email" value={email} onChange={ e => setEmail(e.currentTarget.value)} />
                         <label>Password</label>
-                        <input type="password" name="password" onChange={ e => password.current = e.currentTarget.value}/>
+                        <input type="password" value={password} onChange={ e => setPassword(e.currentTarget.value)}/>
+                        {message !== '' && (<ErrorMessage>{message}</ErrorMessage>)}
                         <button>Sign In</button>
                         <p>Don't have an account? <a onClick={flipCard}>Click Here</a></p>
                     </form>
@@ -102,11 +111,12 @@ export function LogIn(){
                     <h1>Sign Up</h1>
                     <form onSubmit={ e => handleSignUp(e)}>
                         <label >Name</label>
-                        <input type="text" onChange={ e => name.current = e.currentTarget.value}/>
+                        <input type="text" value={name} onChange={ e => setName(e.currentTarget.value)}/>
                         <label>Email:</label>
-                        <input type="email" name="email" onChange={ e => email.current = e.currentTarget.value} />
+                        <input type="email" value={email} onChange={ e => setEmail(e.currentTarget.value)} />
                         <label>Password</label>
-                        <input type="password" name="password" onChange={ e => password.current = e.currentTarget.value}/>
+                        <input type="password" value={password} onChange={ e => setPassword(e.currentTarget.value)}/>
+                        {message !== '' && (<ErrorMessage>{message}</ErrorMessage>)}
                         <button>Sign Up</button>
                         <p>Already have an account? <a onClick={flipCard}>Click Here</a></p>
                     </form>

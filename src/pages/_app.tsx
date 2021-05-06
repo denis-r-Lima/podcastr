@@ -16,13 +16,17 @@ function MyApp({ Component, pageProps }) {
 
   const [ isAuthenticated, setIsAuthenticated ] = useState(false)
 
+  const[ userName, setUserName ] = useState<string>(null)
+
   function toggleAuthenticated() {
     setIsAuthenticated(current => !current)
   }
 
   const value = {
     isAuthenticated,
-    toggleAuthenticated
+    toggleAuthenticated,
+    userName, 
+    setUserName
   }
 
   

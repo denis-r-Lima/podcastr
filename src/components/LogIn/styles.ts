@@ -106,3 +106,8 @@ export const LottieDiv = styled.div`
     display: none;
   }
 `;
+
+export const ErrorMessage = styled.p`
+  margin: 0.5rem auto;
+  font-weight: bold;
+`
