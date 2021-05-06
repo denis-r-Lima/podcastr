@@ -26,6 +26,10 @@ export const Container = styled.header`
         padding: 0.3rem 0.5rem;
     }
 
+    & a{
+        cursor: pointer;
+    }
+
     @media (max-width: 400px){
         & p{
             display: none;
