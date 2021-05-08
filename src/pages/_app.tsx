@@ -11,12 +11,11 @@ import GlobalStyles from '../styles/GlobalStyles'
 import Theme from '../Themes'
 
 function MyApp({ Component, pageProps }) {
-
   const Router = useRouter()
 
-  const [ isAuthenticated, setIsAuthenticated ] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-  const[ userName, setUserName ] = useState<string>(null)
+  const [userName, setUserName] = useState<string>(null)
 
   function toggleAuthenticated() {
     setIsAuthenticated(current => !current)
@@ -25,30 +24,28 @@ function MyApp({ Component, pageProps }) {
   const value = {
     isAuthenticated,
     toggleAuthenticated,
-    userName, 
+    userName,
     setUserName
   }
 
-  
-  function AuthenticationPage(){
-    return(
+  function AuthenticationPage() {
+    return (
       <Container>
         <main>
           <Header />
           <Component {...pageProps} />
         </main>
       </Container>
-
     )
   }
 
-  function notAuthenticationPage(){
-    return(
+  function notAuthenticationPage() {
+    return (
       <Container>
-          <main>
-            <Header />
-            <Component {...pageProps} />
-          </main>
+        <main>
+          <Header />
+          <Component {...pageProps} />
+        </main>
         <Player />
       </Container>
     )
@@ -60,14 +57,13 @@ function MyApp({ Component, pageProps }) {
         <ThemeContextProvider>
           <Theme>
             <GlobalStyles />
-            {
-            Router.pathname === "/auth" ?
-              AuthenticationPage():
-                !isAuthenticated ? 
-                <div />
-                :
-                notAuthenticationPage()
-            }
+            {Router.pathname === '/auth' ? (
+              AuthenticationPage()
+            ) : !isAuthenticated ? (
+              <div />
+            ) : (
+              notAuthenticationPage()
+            )}
           </Theme>
         </ThemeContextProvider>
       </PlayerContextProvider>

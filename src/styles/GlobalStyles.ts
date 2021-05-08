@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-
-export default createGlobalStyle `
+export default createGlobalStyle`
 
     *, ::before, ::after{
         padding: 0;
@@ -16,7 +15,7 @@ export default createGlobalStyle `
     }
 
     body{
-        background-color: ${(props) => props.theme.colors.background};
+        background-color: ${props => props.theme.colors.background};
         width: 100vw;
         height: 100vh;  
         overflow: hidden;
@@ -26,7 +25,7 @@ export default createGlobalStyle `
         font-weight: 500;
         font-size: 1rem;
         font-family: 'Inter', sans-serif;
-        color: ${(props) => props.theme.colors.text};
+        color: ${props => props.theme.colors.text};
     }
 
     button{
@@ -48,7 +47,7 @@ export default createGlobalStyle `
     h1,h2,h3,h4,h5,h6{
         font-weight: 600;
         font-family: Lexend, sans-serif;
-        color: ${(props) => props.theme.colors.text_darker};
+        color: ${props => props.theme.colors.text_darker};
     }
 
     ::-webkit-scrollbar {

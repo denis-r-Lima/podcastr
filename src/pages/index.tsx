@@ -1,36 +1,40 @@
-import { GetStaticProps } from "next"
+import { GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head'
 
-import { format , parseISO} from 'date-fns'
-import { MdPlaylistAdd , MdPlayArrow} from 'react-icons/md'
+import { format, parseISO } from 'date-fns'
+import { MdPlaylistAdd, MdPlayArrow } from 'react-icons/md'
 
-import api from "../services/api"
-import { convertDurationToTimeString } from "../utils/convertDurationToTimeString"
-import { Container , AllEpisodes, LatestEpisodes, Details, Buttons} from "../styles/index/styles"
-import { usePlayerContext } from "../contexts/PlayerContext"
+import api from '../services/api'
+import { convertDurationToTimeString } from '../utils/convertDurationToTimeString'
+import {
+  Container,
+  AllEpisodes,
+  LatestEpisodes,
+  Details,
+  Buttons
+} from '../styles/index/styles'
+import { usePlayerContext } from '../contexts/PlayerContext'
 
 type Episode = {
-  id: string,
-  slug: string,
-  title: string,
-  members: string,
-  publishedAt: string,
-  thumbnail: string,
-  duration: number,
+  id: string
+  slug: string
+  title: string
+  members: string
+  publishedAt: string
+  thumbnail: string
+  duration: number
   durationAsString: string
-  url: string,
+  url: string
 }
 
 type HomeProps = {
-  latestEpisodes: Episode[],
+  latestEpisodes: Episode[]
   allEpisodes: Episode[]
-
 }
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
-
   const { play, addToList } = usePlayerContext()
 
   return (
@@ -42,15 +46,15 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
         <h2>Last Episodes</h2>
         <ul>
           {latestEpisodes.map(episode => {
-            return(
+            return (
               <li key={episode.id}>
-                <Image 
-                src={episode.thumbnail} 
-                alt={episode.title} 
-                width={192} 
-                height={192}
-                objectFit="cover"
-                 />
+                <Image
+                  src={episode.thumbnail}
+                  alt={episode.title}
+                  width={192}
+                  height={192}
+                  objectFit="cover"
+                />
                 <Details>
                   <Link href={`/episode/${episode.slug}`}>
                     <a>{episode.title}</a>
@@ -61,12 +65,12 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                 </Details>
                 <Buttons>
                   <button onClick={() => play(episode)}>
-                    <MdPlayArrow/>
+                    <MdPlayArrow />
                   </button>
                   <button onClick={() => addToList(episode)}>
                     <MdPlaylistAdd />
                   </button>
-                  </Buttons>
+                </Buttons>
               </li>
             )
           })}
@@ -86,40 +90,40 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
             </tr>
           </thead>
           <tbody>
-            {
-              allEpisodes.map(episode => {
-                return(
-                  <tr key={episode.id}>
-                    <td style={{width: 72}}>
-                      <Image 
-                      src={episode.thumbnail} 
-                      alt={episode.title} 
-                      width={120} 
+            {allEpisodes.map(episode => {
+              return (
+                <tr key={episode.id}>
+                  <td style={{ width: 72 }}>
+                    <Image
+                      src={episode.thumbnail}
+                      alt={episode.title}
+                      width={120}
                       height={120}
                       objectFit="cover"
-                      />
-                    </td>
-                    <td>
-                      <Link href={`/episode/${episode.slug}`}>
-                        <a>{episode.title}</a>
-                      </Link>
-                    </td>
-                    <td className="not_Display">{episode.members}</td>
-                    <td style={{width: 120}} className="not_Display">{episode.publishedAt}</td>
-                    <td className="not_Display">{episode.durationAsString}</td>
-                    <td>
-                      <button onClick={() => play(episode)}>
-                        {/* <img src="/play-green.svg" alt="Play episode"/> */}
-                        <MdPlayArrow size="1.5rem"/>
-                      </button>
-                      <button onClick={() => addToList(episode)}>
-                        <MdPlaylistAdd/>
-                      </button>
-                    </td>
-                  </tr>
-                )
-              })
-            }
+                    />
+                  </td>
+                  <td>
+                    <Link href={`/episode/${episode.slug}`}>
+                      <a>{episode.title}</a>
+                    </Link>
+                  </td>
+                  <td className="not_Display">{episode.members}</td>
+                  <td style={{ width: 120 }} className="not_Display">
+                    {episode.publishedAt}
+                  </td>
+                  <td className="not_Display">{episode.durationAsString}</td>
+                  <td>
+                    <button onClick={() => play(episode)}>
+                      {/* <img src="/play-green.svg" alt="Play episode"/> */}
+                      <MdPlayArrow size="1.5rem" />
+                    </button>
+                    <button onClick={() => addToList(episode)}>
+                      <MdPlaylistAdd />
+                    </button>
+                  </td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </AllEpisodes>
@@ -127,14 +131,10 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
   )
 }
 
-
-
-
-
 export const getStaticProps: GetStaticProps = async () => {
   const { data } = await api.get('/getEpisodes')
 
-  const episodes: Episode[] = data.map((d) => {
+  const episodes: Episode[] = data.map(d => {
     return {
       id: d['_id'],
       slug: d.slug,
@@ -145,11 +145,10 @@ export const getStaticProps: GetStaticProps = async () => {
       duration: Number(d.file.duration),
       durationAsString: convertDurationToTimeString(Number(d.file.duration)),
       url: d.file.url
-      } 
     }
-  )
+  })
 
-  const latestEpisodes = episodes.slice(0,2)
+  const latestEpisodes = episodes.slice(0, 2)
   const allEpisodes = episodes.slice(2, episodes.length)
 
   return {
